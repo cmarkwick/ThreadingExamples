@@ -1,0 +1,85 @@
+﻿<Window x:Class="ThreadingExamples.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ThreadingExamples"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="519.8" Width="638.6">
+    <Grid Margin="0" Background="#FF757E96">
+        <Grid.RowDefinitions>
+            <RowDefinition ></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TabControl x:Name="tabControl" Height="Auto" Width="Auto"
+                    Margin="5,10,5,5.4" Grid.RowSpan="2">
+
+            <TabItem Header="Timers" Width="48" Margin="0" >
+                <Grid Background="#FFE5E5E5" Margin="0,-12,-0.2,12.2">
+                    <Button x:Name="btnTimerStart" Content="Start Timer"  Height="35" Margin="10,31,62,0" VerticalAlignment="Top" Click="btnTimerStart_Click"/>
+                    <Button x:Name="btnTimerStop" Content="Stop Timer"  Height="35" Margin="10,75,62,0" VerticalAlignment="Top" Click="btnTimerStop_Click"/>
+                    <Button x:Name="btnTimeDispatchStart" Content="Start Dispatch Timer" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top" Width="113" Height="33" Click="btnTimeDispatchStart_Click"/>
+                    <Button x:Name="btnTimeDispatchStop" Content="Stop Dispatch Timer" HorizontalAlignment="Left" Margin="10,279,0,0" VerticalAlignment="Top" Width="113" Height="33" RenderTransformOrigin="0.396,0.23" Click="btnTimeDispatchStop_Click"/>
+                    <Label x:Name="lblDispatcherLabel" Content="" HorizontalAlignment="Left" Margin="10,208,0,0" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.531,-1.93"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Thread" Width="48" Margin="0">
+                <Grid Background="#FFE5E5E5" Margin="0,-6,-0.2,5.6">
+                    <Button x:Name="btnThreadQueue" Content="Queue Some Work" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="131" Height="35" Click="btnThreadQueue_Click"/>
+                    <Button x:Name="btnThreadStartUp" Content="Start Up a New Thread" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="131" Height="35" Click="btnThreadStartUp_Click"/>
+                    <ScrollViewer Name="scrollThreads" HorizontalAlignment="Left" Height="297" Margin="10,141,0,0" VerticalAlignment="Top" Width="165" BorderBrush="#FFC53434" Background="#FFB99191">
+                        <StackPanel Name="threadButtonStack">
+
+                        </StackPanel>
+                    </ScrollViewer>
+                    <Label x:Name="label_Copy" Content="Started Threads" HorizontalAlignment="Left" Margin="295,12,0,0" VerticalAlignment="Top" Width="121"/>
+                    <Label x:Name="label_Copy2" Content="Stop Threads" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.564,7.07"/>
+                    <CheckBox x:Name="chkJoin" Content="Join" HorizontalAlignment="Left" Margin="117,121,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.064,0.408"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Sync" Width="40">
+                <Grid Background="#FFE5E5E5" Margin="0,14,-0.2,-14.8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="62*"/>
+                        <ColumnDefinition Width="123*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btnStartWorkerThread" Content="Start Worker Thread" HorizontalAlignment="Left" Margin="22,27,0,0" VerticalAlignment="Top" Width="129" Height="30" Click="btnStartWorkerThread_Click" Grid.ColumnSpan="2"/>
+                    <Button x:Name="btnQueueUpWork" Content="Add Work To PIle" HorizontalAlignment="Left" Margin="22,131,0,0" VerticalAlignment="Top" Width="129" Height="30" Click="btnQueueUpWork_Click" Grid.ColumnSpan="2"/>
+                    <Button x:Name="btnTellThreadToConsume" Content="Signal Thread To Work" HorizontalAlignment="Left" Margin="22,186,0,0" VerticalAlignment="Top" Width="129" Height="30" Click="btnTellThreadToConsume_Click" Grid.ColumnSpan="2"/>
+                    <Button x:Name="btnStopWorkerThread" Content="Stop Worker Thread" HorizontalAlignment="Left" Margin="22,239,0,0" VerticalAlignment="Top" Width="129" Height="30" Click="btnStopWorkerThread_Click" Grid.ColumnSpan="2"/>
+                    <Label x:Name="label1" Content="Amount of work:" HorizontalAlignment="Left" Margin="22,72,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="120"/>
+                    <TextBox x:Name="txtAmountOfWork" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="22,103,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="120" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Newer" Width="50" >
+                <Grid Background="#FFE5E5E5" Margin="0,-6,-0.2,5.6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="76*"/>
+                        <ColumnDefinition Width="109*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btnParallel" Content="Start Parallel Loop" HorizontalAlignment="Left" Margin="25,79,0,0" VerticalAlignment="Top" Width="126" Click="btnParallel_Click" Height="28" Grid.ColumnSpan="2"/>
+                    <Button x:Name="btnTask" Content="Start Task" HorizontalAlignment="Left" Margin="25,125,0,0" VerticalAlignment="Top" Width="126" Click="btnTask_Click" Height="28" Grid.ColumnSpan="2"/>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+
+        <ListView x:Name="loggingView" Grid.Column="1" Height="Auto" Margin="2,34,8,6.4" Width="Auto" Grid.RowSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btnClear" Content="Clear" HorizontalAlignment="Left" Margin="2,6,0,0" VerticalAlignment="Top" Width="75" Click="btnClear_Click" Grid.Column="1" Height="23"/>
+        <Label x:Name="label" Content="Work Time (ms)" HorizontalAlignment="Left" Margin="82,3,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBox x:Name="txtWorkTime" HorizontalAlignment="Left" Height="23" Margin="179,6,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="52" Grid.Column="1" />
+        <Label x:Name="label_Copy1" Content="# Loops" HorizontalAlignment="Left" Margin="248,5,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBox x:Name="txtNumLoops" HorizontalAlignment="Left" Height="23" Margin="305,7,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="45" Grid.Column="1" />
+    </Grid>
+</Window>
